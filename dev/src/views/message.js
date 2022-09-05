@@ -21,7 +21,7 @@ export function config(config) {
 
   // Welcome message
   if (config.message) {
-    // If we use cookies, check to sbbee if the cookie exists already
+    // If we use cookies, check to see if the cookie exists already
     if (
       config.useCookies &&
       document.cookie.match(/^(.*;)?\s*showmessage\s*=\s*[^;]+(.*)?$/) == null

@@ -10,7 +10,7 @@
   <body>
     <script>
       (function (w, d, s, o, f, js, fjs) {
-        w['ww'] = o;
+        w['JS-Widget'] = o;
         w[o] =
           w[o] ||
           function () {
@@ -21,19 +21,18 @@
         js.src = f;
         js.async = 1;
         fjs.parentNode.insertBefore(js, fjs);
-      })(window, document, 'script', 'telewidget', 'widget.js');
-
-      telewidget('config', {
-        message: 'Any questions about the product? Feel free to ask us ✨',
-        users: ['user1', 'user2'],
-        showMessageAlways: true,
-        useCookies: false,
-        useAnimations: true,
-        useDarkTheme: false,
-      });
+      })(
+        window,
+        document,
+        'script',
+        'mw',
+        'https://cdn.jsdelivr.net/gh/josh-may/test-telegram-widget@latest/widget.js'
+      );
+      mw('init', { someConfiguration: 42 });
+      mw('message', 'Hello world!');
     </script>
 
-    <!-- <script>
+    <script>
       (function (w, d, s, o, f, js, fjs) {
         w['ww'] = o;
         w[o] =
@@ -51,19 +50,19 @@
         document,
         'script',
         'whatswidget',
-        'https://cdn.jsdelivr.net/gh/mascarell/telewidget@latest/widget.js'
+        'https://cdn.jsdelivr.net/gh/josh-may/test-telegram-widget@latest/widget.js'
       );
 
       whatswidget('config', {
         message: 'Any questions about our product? 👋',
         // You can put only one number in the array if you don't need multiple phones support
-        users: ['user1', 'user2'],
+        users: ['Squirrel_Watcher'],
         showMessageAlways: true,
         useCookies: false,
         floatLeft: false,
         useAnimations: true,
         useDarkTheme: false,
       });
-    </script> -->
+    </script>
   </body>
 </html>
