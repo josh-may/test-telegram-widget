@@ -8,9 +8,9 @@
     <title>TeleWidget test page</title>
   </head>
   <body>
-    <script>
+    <!-- <script>
       (function (w, d, s, o, f, js, fjs) {
-        w['JS-Widget'] = o;
+        w['ww'] = o;
         w[o] =
           w[o] ||
           function () {
@@ -21,16 +21,17 @@
         js.src = f;
         js.async = 1;
         fjs.parentNode.insertBefore(js, fjs);
-      })(
-        window,
-        document,
-        'script',
-        'mw',
-        'https://cdn.jsdelivr.net/gh/josh-may/test-telegram-widget@latest/widget2.js'
-      );
-      mw('init', { someConfiguration: 42 });
-      mw('message', 'Hello world!');
-    </script>
+      })(window, document, 'script', 'telewidget', 'widget.js');
+
+      telewidget('config', {
+        message: 'Any questions about the product? Feel free to ask us ✨',
+        users: ['Squirrel_Watcher'],
+        showMessageAlways: true,
+        useCookies: false,
+        useAnimations: true,
+        useDarkTheme: false,
+      });
+    </script> -->
 
     <script>
       (function (w, d, s, o, f, js, fjs) {
