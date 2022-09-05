@@ -7,32 +7,43 @@ tmp.innerHTML = html;
 let container = tmp.querySelector('.tlgc');
 
 /* Initial configuration for the widget */
-export function config(config) {    
-	// Add animations if the option is enabled
-	if(config.useAnimations) {
-		container.querySelector('.tlgm').classList.add('slide');
-		container.querySelector('.telewidget-button').classList.add('zoomIn');
-	}
+export function config(config) {
+  // Add animations if the option is enabled
+  if (config.useAnimations) {
+    container.querySelector('.tlgm').classList.add('slide');
+    container.querySelector('.telewidget-button').classList.add('zoomIn');
+  }
 
-	// Add dark theme classes if the option is enabled
-	if (config.useDarkTheme) {
-		container.classList.add('dark');
-	}
-	
+  // Add dark theme classes if the option is enabled
+  if (config.useDarkTheme) {
+    container.classList.add('dark');
+  }
+
   // Welcome message
-  if(config.message) {
-    // If we use cookies, check to see if the cookie exists already
-    if(config.useCookies && document.cookie.match(/^(.*;)?\s*showmessage\s*=\s*[^;]+(.*)?$/) == null ) {
-      container.querySelector('.tlgm').innerHTML = `${config.message} <span></span>`;
+  if (config.message) {
+    // If we use cookies, check to sbbee if the cookie exists already
+    if (
+      config.useCookies &&
+      document.cookie.match(/^(.*;)?\s*showmessage\s*=\s*[^;]+(.*)?$/) == null
+    ) {
+      container.querySelector(
+        '.tlgm'
+      ).innerHTML = `${config.message} <span></span>`;
       // Event listener to close the message on the widget
-      container.querySelector('.tlgm span').addEventListener('click', closeMessage);
+      container
+        .querySelector('.tlgm span')
+        .addEventListener('click', closeMessage);
       // Create the cookie
       createCookie('showmessage', 'no', 1);
       // Show the message if we're not using cookies
     } else if (!config.useCookies) {
-      container.querySelector('.tlgm').innerHTML = `${config.message} <span></span>`;
+      container.querySelector(
+        '.tlgm'
+      ).innerHTML = `${config.message} <span></span>`;
       // Event listener to close the message on the widget
-      container.querySelector('.tlgm span').addEventListener('click', closeMessage);
+      container
+        .querySelector('.tlgm span')
+        .addEventListener('click', closeMessage);
       // Remove the div that contains the welcome message if we're using the cookie and it already exists
     } else {
       container.querySelector('.tlgm').remove();
@@ -41,36 +52,39 @@ export function config(config) {
   } else {
     container.querySelector('.tlgm').remove();
   }
-		
-	// Add telegram link
-    if(config.users) {
-		try {
-			let randomUsers = config.users[Math.floor(Math.random() * config.users.length)];
-			
-			container.querySelector('.telewidget-button').href = `https://t.me/${randomUsers}`;
-		} catch (error) {
-			console.error('telewidget -> cannot select users');
-		}
-	}
 
-	// Show the widget on the left side of the page
-    if(config.floatLeft) {
-      container.classList.add('left');
-	}
+  // Add telegram link
+  if (config.users) {
+    try {
+      let randomUsers =
+        config.users[Math.floor(Math.random() * config.users.length)];
 
-	// Show the widget message on mobile devices
-  if(config.showMessageAlways) {
+      container.querySelector(
+        '.telewidget-button'
+      ).href = `https://t.me/${randomUsers}`;
+    } catch (error) {
+      console.error('telewidget -> cannot select users');
+    }
+  }
+
+  // Show the widget on the left side of the page
+  if (config.floatLeft) {
+    container.classList.add('left');
+  }
+
+  // Show the widget message on mobile devices
+  if (config.showMessageAlways) {
     container.classList.add('show-message-always');
-	}
+  }
 
-	// Add the widget to the body of your page
+  // Add the widget to the body of your page
   body = document.getElementsByTagName('body')[0];
   body.appendChild(container);
 }
 
 /* Close widget welcome message */
 export function closeMessage() {
-  container.querySelector('.tlgm').style.display = 'none'
+  container.querySelector('.tlgm').style.display = 'none';
 }
 
 /* Function to create a cookie to show the message only once every day */
@@ -83,11 +97,11 @@ function createCookie(name, value, days) {
 
   if (days) {
     date = new Date();
-    date.setTime(date.getTime()+(days*24*60*60*1000));
-    expires = "; expires="+date.toGMTString();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = '; expires=' + date.toGMTString();
   } else {
-    expires = "";
+    expires = '';
   }
 
-  document.cookie = name+"="+value+expires+"; path=/";
+  document.cookie = name + '=' + value + expires + '; path=/';
 }
