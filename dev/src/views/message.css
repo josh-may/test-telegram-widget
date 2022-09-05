@@ -1,166 +1,88 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
-
-/* Container */
-.tlgc {
+/* .js-widget-overlay {
+  z-index: 10001;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 0.8;
+  background-color: #000;
+} */
+/* 
+.js-widget-dialog {
   position: fixed;
   z-index: 10002;
-  bottom: 0;
-  right: 0;
-  left: auto;
-  top: auto;
-  content: '';
-  padding: 12px;
+  background: #fff;
+  left: 50%;
+  top: 30%;
+  margin: 0 0 0 -120px;
+  width: 200px;
+  padding: 10px 20px;
+  border: solid 1px #333;
+} */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
+  font-weight: normal;
 }
 
-/* Message above icon */
-.tlgc .tlgm {
-  position: relative;
-  font-size: 14px;
-  background-color: #fff;
-  font-family: 'Open Sans', sans-serif;
-  box-shadow: 1px 2px 8px rgba(70, 70, 70, 0.25);
-  padding: 15px 20px;
-  padding-right: 30px;
-  border-radius: 8px;
-  color: #525252;
-  font-weight: 600;
-  margin-bottom: 12px;
-  max-width: 450px;
-  width: auto;
-  display: none;
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
-  animation-delay: 0.5s;
+body {
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(to right, #00aaff, #00ff6c);
 }
 
-/* Close button */
-.tlgc .tlgm span {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  right: 15px;
-  top: 15px;
-  left: auto;
-}
-.tlgc .tlgm span:hover {
-  cursor: pointer;
-}
-.tlgc .tlgm span::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 10px;
-  height: 2px;
-  background-color: #979797;
-  transform: rotate(45deg);
-}
-.tlgc .tlgm span::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 10px;
-  height: 2px;
-  background-color: #979797;
-  transform: rotate(-45deg);
-}
-
-/* Button */
-.tlgc .telewidget-button {
-  content: '';
-  width: 48px;
-  height: 48px;
-  position: relative;
-  float: right;
-  display: flex;
+.calculator-grid {
+  display: grid;
   justify-content: center;
-  align-items: center;
-  transition: 0.1s linear;
-  animation-duration: 0.5s;
-  animation-fill-mode: both;
+  align-content: center;
+  min-height: 1vh;
+  max-width: 51.3vh;
+  /* width: 28.2%; */
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 1px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
-.tlgc .telewidget-button::before {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  z-index: 10000;
-  width: 100%;
-  height: 100%;
-  box-shadow: 1px 2px 8px rgba(70, 70, 70, 0.25);
-}
-.tlgc .telewidget-button img {
-  z-index: 10001;
-  transition: 0.1s linear;
-  margin: 0 !important;
-  padding: 0 !important;
-  max-width: 100%;
-}
-.tlgc .telewidget-button:hover img {
+
+.calculator-grid > button {
   cursor: pointer;
-  transform: scale(1.1);
+  font-size: 2rem;
+  border: 1px solid white;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
-/* POSITION THE WIDGET TO THE LEFT */
-.tlgc.left {
-  left: 0;
-  width: auto;
-  right: initial;
-}
-.tlgc.left .telewidget-button {
-  float: left;
+.calculator-grid > button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
-/* SHOW WIDGET ON MOBILES DIVICES */
-.tlgc.show-message-always .tlgm {
-  display: block;
+.span-two {
+  grid-column: span 2;
 }
 
-/* Dark theme */
-.tlgc.dark .tlgm {
-  font-size: 14px;
-  background-color: #081131;
-  box-shadow: 1px 2px 8px rgba(70, 70, 70, 0.25);
-  color: #eeeeee;
-}
-.tlgc.dark .telewidget-button::before {
-  box-shadow: 1px 2px 8px rgba(70, 70, 70, 0.25);
-}
-.tlgc.dark .tlgm span::after {
-  background-color: #e2e2e2;
-}
-.tlgc.dark .tlgm span::before {
-  background-color: #e2e2e2;
+.output {
+  grid-column: 1 / -1;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
-/* Tablets */
-@media only screen and (min-width: 768px) {
-  .tlgc .tlgm span {
-    right: 10px;
-  }
-  .tlgc .tlgm {
-    display: block;
-  }
+.output .previous-operand {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.5rem;
 }
 
-@keyframes zoomIn {
-  from {
-    transform: scale(0.2);
-    opacity: 0;
-  }
-}
-@keyframes slide {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-}
-
-/* Classes for animations */
-.zoomIn {
-  animation-name: zoomIn;
-}
-.slide {
-  animation-name: slide;
+.output .current-operand {
+  color: white;
+  font-size: 2.5rem;
 }
